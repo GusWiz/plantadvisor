@@ -51,7 +51,41 @@ def lookup_plant(plant_name: str) -> dict:
     what information would actually be helpful to the agent.
 
     Before writing code, complete the lookup_plant section of specs/tool-functions-spec.md.
+    Tested output by running the below command in git bash: 
+    'python -c "from tools import lookup_plant, get_seasonal_conditions; print(lookup_plant(\"devil's ivy\")); print(get_seasonal_conditions())'
+
     """
+    normalized = plant_name.strip().lower()
+
+    # Direct key match
+    if normalized in _plant_db:
+        return {
+            "found": True,
+            "name": plant_name,
+            "message": _plant_db[normalized]
+        }
+    # Display name, scientific name, alias_match
+    for plant_key, plant in _plant_db.items():
+        if plant["display_name"].lower() == normalized:
+            return {
+                "found" : True,
+                "name" : plant_name,
+                "message" : plant
+            }
+        if plant["scientific_name"].lower() == normalized:
+            return {
+                "found" : True,
+                "name" : plant_name,
+                "message" : plant
+            }
+        for name in plant["aliases"]:
+            if name == normalized:
+                return {
+                    "found" : True,
+                    "name" : plant_name,
+                    "message" : plant
+                }
+
     return {
         "found": False,
         "name": plant_name,
