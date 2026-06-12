@@ -73,7 +73,9 @@ the broadest net, so they go last.
 *Aliases are stored as a list of strings. How will you check if the normalized input matches any alias in the list? Write your approach in pseudocode or plain English.*
 
 ```
-[your answer here]
+iterate over the list -> return true if is in the list.
+
+return false
 ```
 
 ---
@@ -83,7 +85,10 @@ the broadest net, so they go last.
 *When a plant isn't found, the agent will read your message and use it to decide what to tell the user. Write the exact string you'll return — make it useful to the agent, not just to a human reading logs.*
 
 ```
-[your answer here]
+{"found": False, "name": <normalized input>, "message": <helpful string>}
+
+string: "The plant is not in the database of the tool. Confirm with the user if the plant name spelled correct. Do not invent any plant names or details about the plants. Only use the information that was in the database. Be straightforward with your answer and say that the plant name was not found in the database."
+
 ```
 
 ---
